@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0bf070b8.css",
+    "main.js": "/static/js/main.7269989e.js",
+    "static/media/one.pdf": "/static/media/one.7b99a18454260bc5102f.pdf",
+    "static/media/vilogo.png": "/static/media/vilogo.6f9ae0606da0dd628c6b.png",
+    "index.html": "/index.html",
+    "main.0bf070b8.css.map": "/static/css/main.0bf070b8.css.map",
+    "main.7269989e.js.map": "/static/js/main.7269989e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0bf070b8.css",
+    "static/js/main.7269989e.js"
+  ]
+}
