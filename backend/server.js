@@ -6,10 +6,10 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); // Import JWT library
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.use(cors());
 
-mongoose.connect('mongodb+srv://chethanb886:pool1234dead@cluster0.6xso8xt.mongodb.net/test', {
+mongoose.connect('mongodb+srv://chethanb886:pool1234dead@cluster0.ydorjmq.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -79,12 +79,15 @@ app.post('/api/register', async (req, res) => {
       return res.status(400).json({ error: 'Email already registered' });
     }
 
-    // Create a new user with the password
-    const newUser = new User({ username: Name, email, password });
+    // Hash the password before saving it to the database
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user with the hashed password
+    const newUser = new User({ username: Name, email, password: hashedPassword });
     await newUser.save();
 
     // Create a new FormData document and save it to MongoDB
-    const newFormData = new FormData({ Name, email, Phone, date, gender, country, state,password });
+    const newFormData = new FormData({ Name, email, Phone, date, gender, country, state, password: hashedPassword });
     await newFormData.save();
 
     res.status(201).json({ message: 'Registration successful' });
@@ -93,6 +96,7 @@ app.post('/api/register', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 
 // Login

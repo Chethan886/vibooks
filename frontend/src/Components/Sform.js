@@ -223,6 +223,10 @@
 // }
 
 // export default App;
+
+
+
+
 import React, { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -255,13 +259,14 @@ function Sform() {
 
     try {
       // Send the form data to your server for registration
-      const response = await Axios.post("http://localhost:3000/api/register", formData);
+      const response = await Axios.post("http://localhost:3001/api/register", formData);
 
       if (response.status === 201) {
         setMsg("Registration successful");
         // Redirect to the login page after successful registration
         navigate("/login");
       } else {
+        console.log(response.data); // Log the response data for more information
         setMsg("Registration failed");
       }
     } catch (error) {
@@ -393,4 +398,178 @@ function Sform() {
 }
 
 export default Sform;
+
+
+
+
+// import React, { useState } from "react";
+// import Axios from "axios";
+// import { useNavigate } from "react-router-dom";
+
+// function Sform() {
+//   const navigate = useNavigate();
+
+//   const [formData, setFormData] = useState({
+//     Name: "",
+//     email: "",
+//     Phone: "",
+//     date: "",
+//     gender: "",
+//     country: "India",
+//     state: "",
+//     address: "",
+//     zip: "",
+//     password: "",
+//   });
+
+//   const [msg, setMsg] = useState("");
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({ ...formData, [name]: value });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       // Send the form data to your server for registration
+//       const response = await Axios.post("http://localhost:3001/api/register", formData);
+
+//       if (response.status === 201) {
+//         setMsg("Registration successful");
+//         // Redirect to the login page after successful registration
+//         navigate("/login");
+//       } else {
+//         setMsg("Registration failed");
+//       }
+//     } catch (error) {
+//       console.error(error);
+//       setMsg("Registration failed");
+//     }
+//   };
+
+//   return (
+//     <div className="soutbox">
+//       <div className="form">
+//         <form onSubmit={handleSubmit}>
+//           <div className="form-items">
+//             <input
+//               className="inputfor"
+//               type="text"
+//               name="Name"
+//               value={formData.Name}
+//               placeholder="Enter your name"
+//               onChange={handleChange}
+//             />
+//           </div>
+//           <div className="form-items">
+//             <input
+//               className="inputfor"
+//               type="email"
+//               name="email"
+//               value={formData.email}
+//               placeholder="Enter your email"
+//               onChange={handleChange}
+//             />
+//           </div>
+//           <div className="form-items">
+//             <input
+//               className="inputfor"
+//               type="Phone"
+//               name="Phone"
+//               value={formData.Phone}
+//               placeholder="Enter your phone number"
+//               onChange={handleChange}
+//             />
+//           </div>
+//           <div className="form-items">
+//             <input
+//               className="inputfor"
+//               type="date"
+//               name="date"
+//               value={formData.date}
+//               placeholder="Enter your date of birth"
+//               onChange={handleChange}
+//             />
+//           </div>
+//           <div className="form-items">
+//             <select
+//               className="ddn"
+//               name="gender"
+//               value={formData.gender}
+//               onChange={handleChange}
+//             >
+//               <option>--Select gender--</option>
+//               <option value="male">Male</option>
+//               <option value="female">Female</option>
+//               <option value="other">Other</option>
+//             </select>
+//           </div>
+//           <div className="form-items">
+//             <input
+//               className="inputfor"
+//               type="text"
+//               name="country"
+//               value={formData.country}
+//               readOnly
+//             />
+//           </div>
+//           <div className="form-items">
+//             <select
+//               className="ddn"
+//               name="state"
+//               value={formData.state}
+//               onChange={handleChange}
+//             >
+//               <option value="Andhra Pradesh">--Select State--</option>
+//               <option value="Andhra Pradesh">Andhra Pradesh</option>
+//               <option value="Andaman and Nicobar Islands">
+//                 Andaman and Nicobar Islands
+//               </option>
+//               {/* Other state options */}
+//             </select>
+//           </div>
+//           <div className="form-items">
+//             <input
+//               className="inputfor"
+//               type="text"
+//               name="address"
+//               value={formData.address}
+//               placeholder="Enter your address"
+//               onChange={handleChange}
+//             />
+//           </div>
+//           <div className="form-items">
+//             <input
+//               className="inputfor"
+//               type="text"
+//               name="zip"
+//               value={formData.zip}
+//               placeholder="Enter your ZIP code"
+//               onChange={handleChange}
+//             />
+//           </div>
+//           <div className="form-items">
+//             <input
+//               className="inputfor"
+//               type="password"
+//               name="password"
+//               value={formData.password}
+//               placeholder="Enter your password"
+//               onChange={handleChange}
+//             />
+//           </div>
+//           <button className="formbut" type="submit">
+//             Submit
+//           </button>
+//         </form>
+
+//         <div className="msg">{msg}</div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Sform;
 
